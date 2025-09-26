@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Demo</title>
+  <style>
+    body {
+      font-family: Arial;
+      border: 2px solid black; /* border for the whole page */
+      padding: 10px;
+    }
+    h2 {
+      color: blue;
+    }
+</style>
+</head>
+<body>
+  <h2>JavaScript Example: Variables, Functions, and Objects</h2>
+  <p id="output"></p>
+
+  <script>
+    // Variable
+    let name = "Alice";
+    const a=10;
+
+    // Function
+    function sayHello(person) {
+      return "Hello, " + person + "!";
+    }
+
+    // Object
+    let car = {
+      brand: "Toyota",
+      model: "Corolla",
+      start: function() {
+        return "The car has started.";
+      }
+    };
+
+    // Display output on the page
+    let result = "";
+    result += "Name: " + name + "<br>";
+      result += "Number: " +a + "<br>";
+    result += sayHello(name) + "<br>";
+    result += "Car Brand: " + car.brand + "<br>";
+    result += car.start();
+
+    document.getElementById("output").innerHTML = result;
+  </script>
+</body>
+</html>
