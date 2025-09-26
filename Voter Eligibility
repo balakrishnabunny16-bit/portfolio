@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Voter Eligibility</title>
+  </head>
+  <body>
+    <h2>Voter Eligibility Check</h2>
+    <p id="result"></p>
+
+    <script>
+      var age = prompt("Enter your age:");
+      var result = document.getElementById("result");
+
+      if (age >= 18) {
+        result.innerHTML = "You are eligible to vote!";
+      } else {
+        result.innerHTML = "Sorry, you are not eligible to vote.";
+      }
+    </script>
+  </body>
+</html>
