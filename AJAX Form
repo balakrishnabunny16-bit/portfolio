@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple AJAX Form</title>
-  </head>
-  <body>
-    <h2>AJAX Form Example</h2>
+<head>
+  <title>Simple AJAX Form</title>
+</head>
+<body>
+  <h2>AJAX Form Example</h2>
 
-    <form id="myForm">
-      Name: <input type="text" name="name" required /><br />
-      Email: <input type="email" name="email" required /><br />
-      <button type="submit">Submit</button>
-    </form>
+  <form id="myForm">
+    Name: <input type="text" name="name" required><br>
+    Email: <input type="email" name="email" required><br>
+    <button type="submit">Submit</button>
+  </form>
 
-    <h3>Contacts:</h3>
-    <ul id="list"></ul>
+  <h3>Contacts:</h3>
+  <ul id="list"></ul>
 
-    <script>
-      const form = document.getElementById("myForm");
-      const list = document.getElementById("list");
-      const API = "https://jsonplaceholder.typicode.com/users"; // mock server
+  <script>
+    const form = document.getElementById("myForm");
+    const list = document.getElementById("list");
+    let contacts = []; // local storage for data
 
-      // Load initial contacts
-      fetch(API)
-        .then((res) => res.json())
-        .then((users) => {
-          users.forEach((u) => {
-            list.innerHTML += `<li>${u.name} - ${u.email}</li>`;
-          });
-        });
+    // Submit form
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
 
-      // Submit form
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(form));
+      // Store in local array
+      contacts.push(data);
 
-        fetch(API, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.json())
-          .then((created) => {
-            list.innerHTML += `<li>${created.name} - ${created.email}</li>`;
-            form.reset();
-          });
+      // Display all contacts
+      list.innerHTML = "";
+      contacts.forEach(c => {
+        list.innerHTML += `<li>${c.name} - ${c.email}</li>`;
       });
-    </script>
-  </body>
+
+      form.reset();
+    });
+  </script>
+</body>
 </html>
