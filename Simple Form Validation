@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+  <style>
+    .error { color: red; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+
+  <form id="regForm">
+    Name: <input id="name"><span class="error" id="nameErr"></span><br><br>
+    Email: <input id="email"><span class="error" id="emailErr"></span><br><br>
+    Phone: <input id="phone"><span class="error" id="phoneErr"></span><br><br>
+    Password: <input type="password" id="password"><span class="error" id="passwordErr"></span><br><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <ul id="list"></ul>
+
+  <script>
+    const form = document.getElementById("regForm");
+    const list = document.getElementById("list");
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      // Clear previous errors
+      document.getElementById("nameErr").textContent = "";
+      document.getElementById("emailErr").textContent = "";
+      document.getElementById("phoneErr").textContent = "";
+      document.getElementById("passwordErr").textContent = "";
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      let valid = true;
+
+      if(name === "") { document.getElementById("nameErr").textContent = " Name required"; valid = false; }
+      if(email === "") { document.getElementById("emailErr").textContent = " Email required"; valid = false; }
+      if(phone === "") { document.getElementById("phoneErr").textContent = " Phone required"; valid = false; }
+      if(password === "") { document.getElementById("passwordErr").textContent = " Password required"; valid = false; }
+
+      if(valid){
+        const li = document.createElement("li");
+        li.textContent = `Name: ${name}, Email: ${email}, Phone: ${phone}`;
+        list.appendChild(li);
+        form.reset();
+        alert("Form submitted successfully!");
+      }
+    });
+  </script>
+</body>
+</html>
