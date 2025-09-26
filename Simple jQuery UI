@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple jQuery UI</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<h2>Demo</h2>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tab1">Tab 1</a></li>
+    <li><a href="#tab2">Tab 2</a></li>
+  </ul>
+  <div id="tab1">
+    <div id="slider"></div>
+    <button id="btn">Open Modal</button>
+  </div>
+  <div id="tab2">
+    <p>Tab 2 content</p>
+  </div>
+</div>
+
+<div id="modal" title="Modal" style="display:none;">
+  <p>This is a modal!</p>
+</div>
+
+<script>
+$(function(){
+  $("#tabs").tabs();
+  $("#slider").slider();
+  $("#btn").click(function(){ $("#modal").dialog(); });
+});
+</script>
+
+</body>
+</html>
