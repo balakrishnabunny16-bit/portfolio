@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSON Rendering</title>
+  </head>
+  <body>
+    <h1>Articles</h1>
+    <ul id="articles"></ul>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+script.json
+fetch("data.json")
+  .then((res) => res.json())
+  .then((data) => {
+    const list = document.getElementById("articles");
+    list.innerHTML = data.articles
+      .map((a) => `<li><b>${a.title}</b>: ${a.summary}</li>`)
+      .join("");
+  })
+  .catch((err) => console.error("Error loading JSON:", err));
+
+
+Data.json
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Intro to JavaScript",
+      "summary": "Learn variables and functions"
+    },
+    {
+      "id": 2,
+      "title": "AJAX Basics",
+      "summary": "How to fetch data from a server"
+    },
+    {
+      "id": 3,
+      "title": "jQuery UI",
+      "summary": "Build interactive UI elements"
+    }
+  ]
+}
