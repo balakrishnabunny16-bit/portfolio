@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Management</title>
+</head>
+<body>
+
+<h2>Library Management System</h2>
+
+Book Name: <input type="text" id="book"><br><br>
+Author: <input type="text" id="author"><br><br>
+<button onclick="addBook()">Add Book</button>
+
+<h3>Book List:</h3>
+<ul id="bookList"></ul>
+
+<script>
+var books = [];
+
+function addBook() {
+  var name = document.getElementById("book").value;
+  var author = document.getElementById("author").value;
+
+  if(name === "" || author === "") {
+    alert("Enter both book name and author!");
+    return;
+  }
+
+  books.push(name + " by " + author);
+
+  var list = document.getElementById("bookList");
+  list.innerHTML = "";
+  for(var i = 0; i < books.length; i++){
+    list.innerHTML += "<li>" + books[i] + "</li>";
+  }
+
+  // Clear input
+  document.getElementById("book").value = "";
+  document.getElementById("author").value = "";
+}
+</script>
+
+</body>
+</html>
